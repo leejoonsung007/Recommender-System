@@ -86,7 +86,6 @@ public class Profile
 
 		for(Double r: dataMap.values())
 			sumsq += Math.pow(r.doubleValue(), 2);
-
 		return Math.sqrt(sumsq);
 	}
 	

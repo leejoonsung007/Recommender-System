@@ -29,7 +29,7 @@ public class ExecuteNP {
 		////////////////////////////////////////////////////////////////////////////
 		// configure the non-personalised recommender algorithms and run experiments
 		DatasetReader reader = new DatasetReader(itemFile, itemGenomeScoresFile, trainFile, testFile);
-		SimilarityMetric metric = new GenreMetric(reader); // run this class using different similarity metrics
+		SimilarityMetric metric = new IncConfidenceMetric(reader); // run this class using different similarity metrics
 		NonPersonalisedRecommender alg = new NonPersonalisedRecommender(reader, metric);
 		
 		// display the top-k recommendations for five items

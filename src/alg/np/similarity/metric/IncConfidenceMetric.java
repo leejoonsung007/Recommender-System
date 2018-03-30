@@ -31,8 +31,32 @@ public class IncConfidenceMetric implements SimilarityMetric
 	 */
 	public double getItemSimilarity(final Integer X, final Integer Y)
 	{
+		double supportX = 0;
+		double supportXY = 0;
+		double supportNotX= 0;
+		double supportNotXY = 0;
+		
+		// get the User profile
+		Map<Integer, Profile> UserProfiles = reader.getUserProfiles();
+		
+		//get the key set of user profile - userId
+		Set<Integer> user = UserProfiles.keySet();
+				
+		for (Integer userId : user) {
+			if (UserProfiles.get(userId).contains(X) && UserProfiles.get(userId).getValue(X) >= 4.0) {
+				supportX++;
+				if (UserProfiles.get(userId).contains(Y) && UserProfiles.get(userId).getValue(Y) >= 4.0) supportXY++;
+			} 
+			if (UserProfiles.get(userId).contains(X) && UserProfiles.get(userId).getValue(X) < 4.0) {
+				supportNotX++;
+				if (UserProfiles.get(userId).contains(Y) && UserProfiles.get(userId).getValue(Y) >= 4.0) supportNotXY++; 
+			}
+		}
+		
 		// calculate similarity using conf(X => Y) / conf(!X => Y)
-
-		return 0;
+		if ((supportNotXY/supportNotX) == 0)
+			return 0;
+		else
+			return (supportXY/supportX)/(supportNotXY/supportNotX);
 	}
 }

@@ -30,8 +30,25 @@ public class GenomeMetric implements SimilarityMetric
 	 */
 	public double getItemSimilarity(final Integer id1, final Integer id2)
 	{
-		// calculate similarity using Cosine
+		// get the GenomeScores vectors
+		Profile genomeX = reader.getItem(id1).getGenomeScores();
+		Profile genomeY = reader.getItem(id2).getGenomeScores();	
 		
-		return 0;
+		// get the commonID of genomeX and genomeY 
+		Set<Integer> commonId = genomeX.getCommonIds(genomeY);
+		
+		// calculate the numerator of cosine similarity formula
+		double sum = 0;
+		for(Integer ID: commonId) {
+			double valueX = genomeX.getValue(ID);
+			double valueY = genomeY.getValue(ID);
+			sum += valueX + valueY;
+		}
+		
+		// calculate similarity using Cosine
+		if (genomeX.getNorm()*genomeY.getNorm() == 0) 
+			return 0;
+		else
+			return sum / (genomeX.getNorm()*genomeY.getNorm());
 	}
 }
