@@ -39,15 +39,19 @@ public class DeviationFromUserMeanPredictor implements Predictor{
 		{
 			Double rating = userProfileMap.get(neighbour).getValue(itemId);// get the neighbour's rating for the target item
 			Double average = userProfileMap.get(neighbour).getMeanValue();
-			Double sim = simMap.getSimilarity(itemId, neighbour);
+			Double sim = simMap.getSimilarity(userId, neighbour);
 			
 			if(rating != null) {
 				above += (rating.doubleValue() - average.doubleValue())*sim;
+				below += sim;
 			}
+			
 		}
+		Double average1 = userProfileMap.get(userId).getMeanValue();
+		below = Math.abs(below);
 		
 		if(below > 0)
-			return above / below;
+			return average1 + above / below;
 		else
 			return null;
 	}

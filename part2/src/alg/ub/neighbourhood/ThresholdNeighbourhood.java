@@ -19,16 +19,16 @@ import profile.Profile;
 
 public class ThresholdNeighbourhood extends Neighbourhood 
 {
-	private double threshold = Integer.MAX_VALUE ; // restric neighbourhood to the highest value neighbours
+	private double threshold = Integer.MAX_VALUE ; // restrict neighbourhood to the highest value neighbours
 	
 	/**
 	 * constructor - creates a new NearestNeighbourhood object
 	 * @param k - the number of neighbours in the neighbourhood
 	 */
-	public ThresholdNeighbourhood(final int threshold)
+	public ThresholdNeighbourhood(final double d)
 	{
-		super();
-		this.threshold = threshold;
+//		super();
+		this.threshold = d;
 	}
 	
 	/**
@@ -52,8 +52,8 @@ public class ThresholdNeighbourhood extends Neighbourhood
 			// get the neighbours
 			Iterator<ScoredThingDsc> iter = ss.iterator();
 			while(iter.hasNext()) {
-				ScoredThingDsc st = iter.next();
-				Integer id = (Integer)st.thing;
+				ScoredThingDsc s = iter.next();
+				Integer id = (Integer)s.thing;
 				this.add(userId, id);
 			}
 		}	

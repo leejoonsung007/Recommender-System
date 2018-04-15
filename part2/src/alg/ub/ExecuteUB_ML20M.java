@@ -14,15 +14,14 @@ import alg.ub.predictor.*;
 import similarity.metric.*;
 import util.evaluator.Evaluator;
 import util.reader.DatasetReader;
-
 public class ExecuteUB_ML20M
 {
 	public static void main(String[] args)
 	{
 		// configure the user-based CF algorithm - set the predictor, neighbourhood and similarity metric ...
-		Predictor predictor = new SimpleAveragePredictor();
-		Neighbourhood neighbourhood = new NearestNeighbourhood(10);
-		SimilarityMetric metric = new CosineMetric();
+		Predictor predictor = new DeviationFromUserMeanPredictor();
+		Neighbourhood neighbourhood = new NearestNeighbourhood(150);
+		SimilarityMetric metric = new PearsonSigWeightingMetric(50);
 		
 		// set the paths and filenames of the item file, genome scores file, train file and test file ...
 		String folder = "ml-20m-2017-2018";

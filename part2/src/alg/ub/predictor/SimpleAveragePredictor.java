@@ -55,7 +55,7 @@ public class SimpleAveragePredictor implements Predictor
 		}
 
 		if(counter > 0)
-			return new Double(above / counter);
+			return new Double(above/counter);
 		else
 			return null;
 	}

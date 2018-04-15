@@ -39,16 +39,17 @@ public class WeightedAveragePredictor implements Predictor{
 		for(Integer neighbour: neighbours) // iterate over each neighbour
 		{
 			Double rating = userProfileMap.get(neighbour).getValue(itemId); // get the neighbour's rating for the target item
-			Double sim = simMap.getSimilarity(itemId, neighbour);
+			Double sim = simMap.getSimilarity(userId, neighbour);
 			
 			if(rating != null) {
 				above += rating.doubleValue()*sim;
+				below += sim;
 			}		
-			below += sim;		
+					
 		}
 			
 		if(below > 0)
-			return above / below;
+			return new Double(above/below);
 		else
 			return null;
 	}

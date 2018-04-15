@@ -22,13 +22,13 @@ public class CosineMetric implements SimilarityMetric{
 		double denominator =  p1.getNorm()*p2.getNorm();
 		double numerator = 0;
 		for(Integer id: common) {
-			double user1_rating = p1.getValue(id);
-			double user2_rating = p2.getValue(id);
-			numerator += user1_rating + user2_rating;
+			double user1_rating = p1.getValue(id).doubleValue();
+			double user2_rating = p2.getValue(id).doubleValue();
+			numerator += user1_rating * user2_rating;
 		} 
 		double above = (common.size() > 0) ? numerator : 0;
 		double below = (common.size() > 0) ? denominator : 0;
-		return (below > 0) ? above /below : 0;
+		return (below > 0) ? above/below : 0;
 	}
 
 }
