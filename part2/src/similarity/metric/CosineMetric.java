@@ -18,6 +18,7 @@ public class CosineMetric implements SimilarityMetric{
 	 */
 	public double getSimilarity(final Profile p1, final Profile p2)
 	{	
+		// get the common id 
 		Set<Integer> common = p1.getCommonIds(p2);
 		double denominator =  p1.getNorm()*p2.getNorm();
 		double numerator = 0;

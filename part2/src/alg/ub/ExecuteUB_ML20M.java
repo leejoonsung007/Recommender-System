@@ -21,7 +21,7 @@ public class ExecuteUB_ML20M
 		// configure the user-based CF algorithm - set the predictor, neighbourhood and similarity metric ...
 		Predictor predictor = new DeviationFromUserMeanPredictor();
 		Neighbourhood neighbourhood = new NearestNeighbourhood(150);
-		SimilarityMetric metric = new PearsonSigWeightingMetric(50);
+		SimilarityMetric metric = new MeanSquaredDifferenceMetric();
 		
 		// set the paths and filenames of the item file, genome scores file, train file and test file ...
 		String folder = "ml-20m-2017-2018";

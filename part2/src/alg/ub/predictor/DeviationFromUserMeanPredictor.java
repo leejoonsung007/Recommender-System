@@ -48,7 +48,6 @@ public class DeviationFromUserMeanPredictor implements Predictor{
 			
 		}
 		Double average1 = userProfileMap.get(userId).getMeanValue();
-		below = Math.abs(below);
 		
 		if(below > 0)
 			return average1 + above / below;
